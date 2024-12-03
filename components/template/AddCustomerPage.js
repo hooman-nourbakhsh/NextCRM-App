@@ -43,7 +43,7 @@ function AddCustomerPage() {
   return (
     <div className="customer-page">
       <h4>Add New Customer</h4>
-      <Form from={form} setForm={setForm} />
+      <Form form={form} setForm={setForm} />
       <div className="customer-page__buttons">
         <button className="first" onClick={cancelHandler}>
           Cancel
