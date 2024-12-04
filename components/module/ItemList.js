@@ -27,14 +27,7 @@ function ItemList({ form, setForm }) {
     <div className="item-list">
       <p>Purchased products</p>
       {products.map((product, index) => (
-        <div className="form-input__list" key={index}>
-          <FormInput name="name" label="Product Name" type="text" value={product.name} onChange={(e) => changeHandler(e, index)} />
-          <div>
-            <FormInput name="price" label="Price" type="text" value={product.price} onChange={(e) => changeHandler(e, index)} />
-            <FormInput name="qty" label="Quantity" type="text" value={product.qty} onChange={(e) => changeHandler(e, index)} />
-          </div>
-          <button onClick={() => deleteHandler(index)}>Remove</button>
-        </div>
+        <ProductItem key={index} product={product} changeHandler={(e) => changeHandler(e, index)} deleteHandler={() => deleteHandler(index)} />
       ))}
       <button onClick={addHandler}>Add Item</button>
     </div>
@@ -42,3 +35,16 @@ function ItemList({ form, setForm }) {
 }
 
 export default ItemList;
+
+function ProductItem({ product, changeHandler, deleteHandler }) {
+  return (
+    <div className="form-input__list">
+      <FormInput name="name" label="Product Name" type="text" value={product.name} onChange={changeHandler} />
+      <div>
+        <FormInput name="price" label="Price" type="text" value={product.price} onChange={changeHandler} />
+        <FormInput name="qty" label="Quantity" type="text" value={product.qty} onChange={changeHandler} />
+      </div>
+      <button onClick={deleteHandler}>Remove</button>
+    </div>
+  );
+}
