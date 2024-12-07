@@ -1,4 +1,5 @@
 import Customer from "../../../models/Customer";
+import connectDB from "../../../utils/connectDB";
 
 export default async function handler(req, res) {
   try {
@@ -8,6 +9,7 @@ export default async function handler(req, res) {
     res.status(500).json({ status: "failed", message: "Error in connection to database" });
     return;
   }
+  
   if (req.method === "PATCH") {
     const id = req.query.customerId;
     const data = req.body.data;
@@ -22,7 +24,7 @@ export default async function handler(req, res) {
       customer.postalCode = data.postalCode;
       customer.date = data.date;
       customer.products = data.products;
-      customer.updateAt = Date.now();
+      customer.updatedAt = Date.now();
       customer.save();
       res.status(200).json({ status: "success", message: "Customer updated successfully", data: customer });
     } catch (error) {

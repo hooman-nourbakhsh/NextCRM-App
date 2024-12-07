@@ -4,11 +4,13 @@ import { useRouter } from "next/router";
 
 function Index() {
   const [data, setData] = useState(null);
+
   const router = useRouter();
   const {
     query: { customerId },
     isReady,
   } = router;
+
   useEffect(() => {
     if (isReady) {
       fetch(`/api/customer/${customerId}`)
@@ -16,10 +18,8 @@ function Index() {
         .then((data) => setData(data.data));
     }
   }, [isReady]);
-  
-  if (data) return <CustomerEditPage data={data} id={customerId} />;
 
-  return <CustomerEditPage />;
+  if (data) return <CustomerEditPage data={data} id={customerId} />;
 }
 
 export default Index;

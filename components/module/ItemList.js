@@ -42,7 +42,7 @@ function ProductItem({ product, changeHandler, deleteHandler }) {
       <FormInput name="name" label="Product Name" type="text" value={product.name} onChange={changeHandler} />
       <div>
         <FormInput name="price" label="Price" type="text" value={product.price} onChange={changeHandler} />
-        <FormInput name="qty" label="Quantity" type="text" value={product.qty} onChange={changeHandler} />
+        <FormInput name="qty" label="Quantity" type="number" value={product.qty} onChange={changeHandler} />
       </div>
       <button onClick={deleteHandler}>Remove</button>
     </div>
